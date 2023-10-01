@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:waether_app_n/views/search_view.dart';
 import 'package:waether_app_n/widgets/no_weather_body.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeVieew extends StatelessWidget {
+  const HomeVieew({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

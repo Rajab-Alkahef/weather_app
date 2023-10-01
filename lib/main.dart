@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waether_app_n/views/home_view.dart';
+import 'package:waether_app_n/views/location_view.dart';
 
 void main() {
   runApp(const WeatherApp());
