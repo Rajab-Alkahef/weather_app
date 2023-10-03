@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:waether_app_n/widgets/custom_bottom_navigation_bar.dart';
 import 'package:waether_app_n/widgets/custom_search_bar.dart';
 import 'package:waether_app_n/widgets/location_card.dart';
 
@@ -47,6 +48,7 @@ class LocationView extends StatelessWidget {
             ],
           ),
         ),
+        bottomNavigationBar: CustomButtomNavigationBar(),
       ),
     );
   }
