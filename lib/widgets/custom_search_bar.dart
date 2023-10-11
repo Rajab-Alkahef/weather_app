@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
@@ -62,8 +64,8 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
             color: Colors.white.withOpacity(0.3),
             fontSize: 16,
           ),
-          border: GradiantBorder(),
-          enabledBorder: GradiantBorder(),
+          border: gradiantBorder(),
+          enabledBorder: gradiantBorder(),
         ),
       ),
     );
@@ -77,7 +79,7 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
       tcolor = Colors.red.withOpacity(0.5);
       color = Colors.red;
       setState(() {});
-      print('field is required');
+      log('field is required');
     } else {
       Navigator.push(
         context,
@@ -90,7 +92,7 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
     }
   }
 
-  GradientOutlineInputBorder GradiantBorder() {
+  GradientOutlineInputBorder gradiantBorder() {
     return GradientOutlineInputBorder(
       gradient: const LinearGradient(
         begin: Alignment.centerLeft,
@@ -100,7 +102,7 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
           Color.fromARGB(255, 45, 148, 239),
         ],
       ),
-      width: 2,
+      width: 1.5,
       borderRadius: BorderRadius.circular(12),
     );
   }

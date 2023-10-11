@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waether_app_n/views/home_view.dart';
+import 'package:waether_app_n/views/location_view.dart';
+import 'package:waether_app_n/views/setting_view.dart';
+import 'package:waether_app_n/views/weather_view.dart';
 
 class CustomButtomNavigationBar extends StatefulWidget {
   const CustomButtomNavigationBar({
@@ -17,68 +19,52 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
     setState(
       () {
         _selectedIndex = index;
-
-        if (_selectedIndex == 0) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const HomeVieew();
-              },
-            ),
-          );
-        } else if (_selectedIndex == 1) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const HomeVieew();
-              },
-            ),
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const HomeVieew();
-              },
-            ),
-          );
-        }
       },
     );
   }
 
+  final List<Widget> tabs = [
+    const WeatherView(),
+    const LocationView(),
+    const SettingView(),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: BottomNavigationBar(
-          unselectedItemColor: Colors.white.withOpacity(0.5),
-          backgroundColor: Colors.white.withOpacity(0.05),
-          elevation: 0,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.cloud_queue_rounded),
-              label: 'Weather',
+    return Stack(
+      children: [
+        tabs.elementAt(_selectedIndex),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Align(
+            alignment: const Alignment(0.0, 1.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: BottomNavigationBar(
+                unselectedItemColor: Colors.white.withOpacity(0.5),
+                backgroundColor: Colors.white.withOpacity(0.05),
+                elevation: 0,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.cloud_queue_rounded),
+                    label: 'Weather',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.search),
+                    label: 'Location',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings_outlined),
+                    label: 'Settings',
+                  ),
+                ],
+                currentIndex: _selectedIndex,
+                selectedItemColor: const Color(0xff2e93ee),
+                onTap: _onItemTapped,
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Location',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: const Color(0xff2e93ee),
-          onTap: _onItemTapped,
+          ),
         ),
-      ),
+      ],
     );
   }
 }

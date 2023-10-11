@@ -15,7 +15,7 @@ class LocationCard extends StatelessWidget {
         height: 170,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: GradiantBorder(),
+          border: gradiantBorder(),
           // image: const DecorationImage(
           //   opacity: 0.6,
           //   image: AssetImage(
@@ -24,7 +24,7 @@ class LocationCard extends StatelessWidget {
           //   fit: BoxFit.fill,
           //   scale: 1.0,
           // ),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(9),
         ),
         child: Stack(
           children: [
@@ -94,7 +94,7 @@ class LocationCard extends StatelessWidget {
     );
   }
 
-  GradientBoxBorder GradiantBorder() {
+  GradientBoxBorder gradiantBorder() {
     return const GradientBoxBorder(
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
@@ -104,6 +104,6 @@ class LocationCard extends StatelessWidget {
             Color.fromARGB(255, 45, 148, 239),
           ],
         ),
-        width: 2);
+        width: 1.5);
   }
 }
