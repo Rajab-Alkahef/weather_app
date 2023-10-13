@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
+import 'package:waether_app_n/widgets/main_weather_card.dart';
+import 'package:waether_app_n/widgets/minimum_weather_card.dart';
 
 class WeatherView extends StatelessWidget {
   const WeatherView({super.key});
@@ -13,102 +13,122 @@ class WeatherView extends StatelessWidget {
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
               colors: [Color(0xff0d2843), Color(0xff144875)])),
-      child: Scaffold(
+      child: const Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
-        body: Stack(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(
-              alignment: const Alignment(0, -0.5),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: const Color(0xff194f7f),
-                  border: gradiantBorder(),
-                ),
-                height: 250,
-                width: 300,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text(
-                      "Alexandria",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 36,
-                          fontFamily: 'Montserrat'),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          '18°',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 60,
-                              fontFamily: 'Montserrat'),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(height: 55, width: 2, color: Colors.white),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: const Color(0xff35648f),
-                              borderRadius: BorderRadius.circular(16)),
-                          width: 100,
-                          height: 50,
-                          child: const Center(
-                            child: Text(
-                              'Cloudy',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 24),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+            SizedBox(
+              height: 60,
+            ),
+            MainWeatherCard(),
+            Padding(
+              padding: EdgeInsets.only(top: 32, bottom: 24, left: 16),
+              child: Text(
+                'Today',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600),
               ),
             ),
-            const Positioned(
-              top: 300,
-              left: 125,
-              child: Icon(
-                Icons.cloud,
-                color: Colors.white,
-                size: 150,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MinimumWeatherCard(),
+                  MinimumWeatherCard(),
+                  MinimumWeatherCard(),
+                  MinimumWeatherCard(),
+                ],
               ),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 14.0, vertical: 16),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.date_range,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    ' 5-Day Forecast',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'Montserrat'),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  DayForecast(),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  DayForecast(),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  DayForecast(),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
   }
+}
 
-  GradientBoxBorder gradiantBorder() {
-    return const GradientBoxBorder(
-      gradient: LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.topRight,
-        colors: [
-          Color.fromARGB(255, 38, 114, 190),
-          Color.fromARGB(255, 45, 148, 239),
-        ],
-      ),
-      width: 1.5,
+class DayForecast extends StatelessWidget {
+  const DayForecast({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Today',
+          style: TextStyle(color: Color(0xff768a9a), fontSize: 18),
+        ),
+        Image.asset(
+          'assets/images/clear.png',
+          scale: 2,
+        ),
+        Row(
+          children: [
+            const Text(
+              '18°',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Container(
+                height: 5,
+                width: 100,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16)),
+              ),
+            ),
+            const Text(
+              '18°',
+              style: TextStyle(color: Colors.white, fontSize: 22),
+            )
+          ],
+        )
+      ],
     );
   }
 }
