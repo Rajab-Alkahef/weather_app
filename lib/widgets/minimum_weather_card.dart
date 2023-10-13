@@ -20,7 +20,10 @@ class MinimumWeatherCard extends StatelessWidget {
           const Text(
             "Now",
             style: TextStyle(
-                color: Colors.white, fontSize: 18, fontFamily: 'Montserrat'),
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 16,
@@ -35,7 +38,9 @@ class MinimumWeatherCard extends StatelessWidget {
           const Text(
             '18°C',
             style: TextStyle(
-                color: Colors.white, fontSize: 22, fontFamily: 'Montserrat'),
+              color: Colors.white,
+              fontSize: 22,
+            ),
           )
         ],
       ),

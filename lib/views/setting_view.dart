@@ -13,12 +13,7 @@ class SettingView extends StatelessWidget {
               colors: [Color(0xff0d2843), Color(0xff144875)])),
       child: const Scaffold(
         resizeToAvoidBottomInset: false,
-        /* appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: const Text('weather'),
-        ),
-     */
+
         backgroundColor: Colors.transparent,
         // bottomNavigationBar: CustomButtomNavigationBar(),
       ),

@@ -43,6 +43,9 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
                 unselectedItemColor: Colors.white.withOpacity(0.5),
                 backgroundColor: Colors.white.withOpacity(0.05),
                 elevation: 0,
+                currentIndex: _selectedIndex,
+                selectedItemColor: const Color(0xff2e93ee),
+                onTap: _onItemTapped,
                 items: const [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.cloud_queue_rounded),
@@ -57,9 +60,6 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
                     label: 'Settings',
                   ),
                 ],
-                currentIndex: _selectedIndex,
-                selectedItemColor: const Color(0xff2e93ee),
-                onTap: _onItemTapped,
               ),
             ),
           ),

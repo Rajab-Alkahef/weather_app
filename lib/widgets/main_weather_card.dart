@@ -17,7 +17,7 @@ class MainWeatherCard extends StatelessWidget {
               color: const Color(0xff194f7f),
               border: gradiantBorder(),
             ),
-            height: 225,
+            height: 200,
             width: 300,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -28,9 +28,7 @@ class MainWeatherCard extends StatelessWidget {
                 const Text(
                   "Alexandria",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontFamily: 'Montserrat'),
+                      color: Colors.white, fontSize: 30, letterSpacing: 1),
                 ),
                 const SizedBox(
                   height: 5,
@@ -41,9 +39,9 @@ class MainWeatherCard extends StatelessWidget {
                     const Text(
                       '18°',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 60,
-                          fontFamily: 'Montserrat'),
+                        color: Colors.white,
+                        fontSize: 60,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -63,8 +61,8 @@ class MainWeatherCard extends StatelessWidget {
                           'Cloudy',
                           style: TextStyle(
                               color: Colors.white,
-                              fontFamily: 'Montserrat',
-                              fontSize: 20),
+                              fontSize: 20,
+                              fontFamily: 'Montserrat'),
                         ),
                       ),
                     )
@@ -75,7 +73,7 @@ class MainWeatherCard extends StatelessWidget {
           ),
         ),
         const Positioned(
-          top: 145,
+          top: 125,
           left: 135,
           child: Icon(
             Icons.cloud,

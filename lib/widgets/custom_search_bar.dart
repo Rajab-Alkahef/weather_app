@@ -14,14 +14,13 @@ class CustomSearchbar extends StatefulWidget {
 class _CustomSearchbarState extends State<CustomSearchbar> {
   String searchValue = '';
   Color color = Colors.white.withOpacity(0.3);
-  Color tcolor = Colors.transparent;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextField(
-        scrollPhysics: const BouncingScrollPhysics(),
+        // scrollPhysics: const BouncingScrollPhysics(),
         showCursor: true,
         style: const TextStyle(
           color: Colors.white,
@@ -35,11 +34,11 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
           onSubm(value);
         }),
         onTap: () {
-          tcolor = Colors.blue.withOpacity(0.5);
-          setState(() {});
+          setState(() {
+            color = Colors.white.withOpacity(0.3);
+          });
         },
         onChanged: (value) {
-          tcolor = Colors.blue.withOpacity(0.5);
           color = Colors.white;
           setState(() {});
           searchValue = value;
@@ -56,6 +55,7 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
             icon: Icon(
               FontAwesomeIcons.magnifyingGlass,
               color: color.withOpacity(0.6),
+              size: 20,
             ),
           ),
           hintText: "Search for a city",
@@ -76,7 +76,6 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
 //functoin check if text field null or do search
   void onSubm(String value) {
     if (value.isEmpty) {
-      tcolor = Colors.red.withOpacity(0.5);
       color = Colors.red;
       setState(() {});
       log('field is required');
