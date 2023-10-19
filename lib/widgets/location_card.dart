@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class LocationCard extends StatelessWidget {
-  const LocationCard({
-    super.key,
-  });
-
+  const LocationCard(
+      {super.key, required this.cityName, required this.location});
+  final String cityName;
+  final String location;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,34 +39,34 @@ class LocationCard extends StatelessWidget {
               blurColor: Colors.black,
               colorOpacity: 0.4,
             ),
-            const Padding(
-              padding: EdgeInsets.all(18.0),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
               child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'My location ',
-                        style: TextStyle(
+                        location,
+                        style: const TextStyle(
                           fontFamily: 'Montserrat',
                           color: Colors.white,
                           fontSize: 24,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 4.0),
+                        padding: const EdgeInsets.only(top: 4.0),
                         child: Text(
-                          'Alexandria ',
-                          style: TextStyle(
+                          cityName,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 18,
                           ),
                         ),
                       ),
-                      Spacer(),
-                      Text(
+                      const Spacer(),
+                      const Text(
                         'Mostly Cloudy ',
                         style: TextStyle(
                           fontFamily: 'Montserrat',
@@ -76,8 +76,8 @@ class LocationCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  Spacer(),
-                  Text(
+                  const Spacer(),
+                  const Text(
                     '18°',
                     style: TextStyle(
                       color: Colors.white,

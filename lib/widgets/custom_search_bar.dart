@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
+import 'package:waether_app_n/models/weather_model.dart';
+import 'package:waether_app_n/services/weather_services.dart';
 
 class CustomSearchbar extends StatefulWidget {
   const CustomSearchbar({super.key});
@@ -30,8 +33,8 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
         onTapOutside: (event) {
           FocusScope.of(context).unfocus();
         },
-        onSubmitted: ((value) {
-          onSubm(value);
+        onSubmitted: ((value) async {
+          setState(() {});
         }),
         onTap: () {
           setState(() {
@@ -74,35 +77,25 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
 //function code of filter icon with drop down
 
 //functoin check if text field null or do search
-  void onSubm(String value) {
-    if (value.isEmpty) {
-      color = Colors.red;
-      setState(() {});
-      log('field is required');
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const Scaffold();
-          },
-        ),
-      );
-    }
+  void onSubm(String value) async {
+    WeatherModel weatherModel =
+        await WeatherService(Dio()).getCurrentWeather(cityName: value);
+    log(weatherModel.cityName);
+    log("$weatherModel.avgTemp");
   }
+}
 
-  GradientOutlineInputBorder gradiantBorder() {
-    return GradientOutlineInputBorder(
-      gradient: const LinearGradient(
-        begin: Alignment.centerLeft,
-        end: Alignment.topRight,
-        colors: [
-          Color.fromARGB(255, 38, 114, 190),
-          Color.fromARGB(255, 45, 148, 239),
-        ],
-      ),
-      width: 1.5,
-      borderRadius: BorderRadius.circular(12),
-    );
-  }
+GradientOutlineInputBorder gradiantBorder() {
+  return GradientOutlineInputBorder(
+    gradient: const LinearGradient(
+      begin: Alignment.centerLeft,
+      end: Alignment.topRight,
+      colors: [
+        Color.fromARGB(255, 38, 114, 190),
+        Color.fromARGB(255, 45, 148, 239),
+      ],
+    ),
+    width: 1.5,
+    borderRadius: BorderRadius.circular(12),
+  );
 }

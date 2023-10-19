@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:waether_app_n/widgets/custom_search_bar.dart';
 import 'package:waether_app_n/widgets/location_card.dart';
 
-class LocationView extends StatelessWidget {
+class LocationView extends StatefulWidget {
   const LocationView({super.key});
 
   @override
+  State<LocationView> createState() => _LocationViewState();
+}
+
+class _LocationViewState extends State<LocationView> {
+  @override
   Widget build(BuildContext context) {
+    setState(() {});
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -39,11 +45,17 @@ class LocationView extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              LocationCard(),
+              LocationCard(
+                location: 'My Location',
+                cityName: 'Damascus',
+              ),
               SizedBox(
                 height: 10,
               ),
-              LocationCard(),
+              LocationCard(
+                location: 'Damascus',
+                cityName: "10",
+              ),
               SizedBox(
                 height: 80,
               ),
