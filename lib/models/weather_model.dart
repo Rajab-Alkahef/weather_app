@@ -1,4 +1,5 @@
 class WeatherModel {
+  final String country;
   final String cityName;
   final String date;
   final String? image;
@@ -8,6 +9,7 @@ class WeatherModel {
   final String condition;
 
   WeatherModel({
+    required this.country,
     required this.cityName,
     required this.date,
     required this.image,
@@ -19,6 +21,7 @@ class WeatherModel {
 
   factory WeatherModel.fromJson(json) {
     return WeatherModel(
+      country: json['location']['country'],
       cityName: json['location']['name'],
       date: json['current']['last_updated'],
       image: json['forecast']['forecastday'][0]['day']['condition']['icon'],

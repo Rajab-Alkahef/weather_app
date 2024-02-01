@@ -15,8 +15,10 @@ class LocationView extends StatefulWidget {
 
 class _LocationViewState extends State<LocationView> {
   @override
+  @override
   Widget build(BuildContext context) {
     // setState(() {});
+
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -59,9 +61,16 @@ class _LocationViewState extends State<LocationView> {
                           fontFamily: "Montserrat"),
                     ));
                   } else if (state is WeatherLoadedState) {
-                    return const LocationCard(
-                      location: 'My Location',
-                      cityName: 'Damascus',
+                    var weatherModel =
+                        BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+                    String avgTemp = "${weatherModel.avgTemp.toInt()}°";
+                    print("avg temp is : $avgTemp");
+
+                    return LocationCard(
+                      location: weatherModel.country,
+                      cityName: weatherModel.cityName,
+                      condition: weatherModel.condition,
+                      avgtemp: avgTemp,
                     );
                   } else {
                     return const Center(

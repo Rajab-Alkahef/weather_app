@@ -4,9 +4,15 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class LocationCard extends StatelessWidget {
   const LocationCard(
-      {super.key, required this.cityName, required this.location});
+      {super.key,
+      required this.cityName,
+      required this.location,
+      required this.condition,
+      required this.avgtemp});
   final String cityName;
   final String location;
+  final String condition;
+  final String avgtemp;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -66,9 +72,9 @@ class LocationCard extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const Text(
-                        'Mostly Cloudy ',
-                        style: TextStyle(
+                      Text(
+                        condition,
+                        style: const TextStyle(
                           fontFamily: 'Montserrat',
                           color: Colors.white,
                           fontSize: 18,
@@ -77,9 +83,9 @@ class LocationCard extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  const Text(
-                    '18°',
-                    style: TextStyle(
+                  Text(
+                    avgtemp,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w300,
                       fontSize: 60,

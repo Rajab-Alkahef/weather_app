@@ -40,8 +40,9 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
         },
         onChanged: (value) {
           color = Colors.white;
-          setState(() {});
+
           searchValue = value;
+          setState(() {});
         },
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 18),

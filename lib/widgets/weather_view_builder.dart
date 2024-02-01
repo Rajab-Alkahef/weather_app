@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
+import 'package:waether_app_n/models/weather_model.dart';
 import 'package:waether_app_n/widgets/day_forecast_card.dart';
 import 'package:waether_app_n/widgets/main_weather_card.dart';
 import 'package:waether_app_n/widgets/minimum_weather_card.dart';
@@ -6,7 +9,9 @@ import 'package:waether_app_n/widgets/minimum_weather_card.dart';
 class WeatherViewBuilder extends StatelessWidget {
   const WeatherViewBuilder({
     super.key,
+    required this.weatherModel,
   });
+  final WeatherModel weatherModel;
 
   @override
   Widget build(BuildContext context) {

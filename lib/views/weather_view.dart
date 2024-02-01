@@ -27,7 +27,11 @@ class WeatherView extends StatelessWidget {
               ),
             );
           } else if (state is WeatherLoadedState) {
-            return const WeatherViewBuilder();
+            var weatherModel =
+                BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+            return WeatherViewBuilder(
+              weatherModel: weatherModel,
+            );
           } else {
             return const Center(
               child: Text(
