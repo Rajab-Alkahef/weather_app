@@ -1,11 +1,8 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gradient_borders/input_borders/gradient_outline_input_border.dart';
-import 'package:waether_app_n/models/weather_model.dart';
-import 'package:waether_app_n/services/weather_services.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 
 class CustomSearchbar extends StatefulWidget {
   const CustomSearchbar({super.key});
@@ -34,7 +31,7 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
           FocusScope.of(context).unfocus();
         },
         onSubmitted: ((value) async {
-          setState(() {});
+          onSubm(searchValue);
         }),
         onTap: () {
           setState(() {
@@ -78,10 +75,12 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
 
 //functoin check if text field null or do search
   void onSubm(String value) async {
-    WeatherModel weatherModel =
-        await WeatherService(Dio()).getCurrentWeather(cityName: value);
-    log(weatherModel.cityName);
-    log("$weatherModel.avgTemp");
+    // WeatherModel weatherModel =
+    //     await WeatherService(Dio()).getCurrentWeather(cityName: value);
+    // log(weatherModel.cityName);
+    // print(weatherModel.avgTemp);
+    var getWeather = BlocProvider.of<GetWeatherCubit>(context);
+    getWeather.getWeather(cityName: value);
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:waether_app_n/widgets/day_forecast_card.dart';
-import 'package:waether_app_n/widgets/main_weather_card.dart';
-import 'package:waether_app_n/widgets/minimum_weather_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
+import 'package:waether_app_n/widgets/weather_view_builder.dart';
 
 class WeatherView extends StatelessWidget {
   const WeatherView({super.key});
@@ -14,75 +14,32 @@ class WeatherView extends StatelessWidget {
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
               colors: [Color(0xff0d2843), Color(0xff144875)])),
-      child: const Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MainWeatherCard(),
-            Padding(
-              padding: EdgeInsets.only(top: 32, bottom: 24, left: 24),
+      child: BlocBuilder<GetWeatherCubit, WeatherState>(
+        builder: (context, state) {
+          if (state is WeatherInitialState) {
+            return const Center(
               child: Text(
-                'Today',
+                "Search for a City in Location Page",
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600),
+                    fontSize: 18,
+                    fontFamily: "Montserrat"),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MinimumWeatherCard(),
-                  MinimumWeatherCard(),
-                  MinimumWeatherCard(),
-                  MinimumWeatherCard(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.date_range,
+            );
+          } else if (state is WeatherLoadedState) {
+            return const WeatherViewBuilder();
+          } else {
+            return const Center(
+              child: Text(
+                "Oops there was an Error, please try again",
+                style: TextStyle(
                     color: Colors.white,
-                    size: 18,
-                  ),
-                  Text(
-                    ' 3-Day Forecast',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+                    fontSize: 18,
+                    fontFamily: "Montserrat"),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                children: [
-                  DayForecastCard(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  DayForecastCard(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  DayForecastCard(),
-                ],
-              ),
-            )
-          ],
-        ),
+            );
+          }
+        },
       ),
     );
   }

@@ -1,8 +1,8 @@
-part of 'get_weather_cubit_cubit.dart';
+part of 'get_weather_cubit.dart';
 
 class WeatherState {}
 
-final class InitialState extends WeatherState {}
+final class WeatherInitialState extends WeatherState {}
 
 final class WeatherLoadedState extends WeatherState {}
 

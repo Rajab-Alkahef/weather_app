@@ -14,7 +14,7 @@ class CustomButtomNavigationBar extends StatefulWidget {
 }
 
 class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
   void _onItemTapped(int index) {
     setState(
       () {
