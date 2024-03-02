@@ -7,6 +7,7 @@ class WeatherModel {
   final double maxTemp;
   final double avgTemp;
   final String condition;
+  final List<dynamic> hourlyForecast;
 
   WeatherModel({
     required this.country,
@@ -17,18 +18,20 @@ class WeatherModel {
     required this.maxTemp,
     required this.avgTemp,
     required this.condition,
+    required this.hourlyForecast,
   });
 
   factory WeatherModel.fromJson(json) {
     return WeatherModel(
-      country: json['location']['country'],
-      cityName: json['location']['name'],
-      date: json['current']['last_updated'],
-      image: json['forecast']['forecastday'][0]['day']['condition']['icon'],
-      minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
-      maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],
-      avgTemp: json['forecast']['forecastday'][0]['day']['avgtemp_c'],
-      condition: json['forecast']['forecastday'][0]['day']['condition']['text'],
-    );
+        country: json['location']['country'],
+        cityName: json['location']['name'],
+        date: json['current']['last_updated'],
+        image: json['forecast']['forecastday'][0]['day']['condition']['icon'],
+        minTemp: json['forecast']['forecastday'][0]['day']['mintemp_c'],
+        maxTemp: json['forecast']['forecastday'][0]['day']['maxtemp_c'],
+        avgTemp: json['forecast']['forecastday'][0]['day']['avgtemp_c'],
+        condition: json['forecast']['forecastday'][0]['day']['condition']
+            ['text'],
+        hourlyForecast: json['forecast']['forecastday'][0]['hour']);
   }
 }

@@ -15,7 +15,6 @@ class LocationView extends StatefulWidget {
 
 class _LocationViewState extends State<LocationView> {
   @override
-  @override
   Widget build(BuildContext context) {
     // setState(() {});
 

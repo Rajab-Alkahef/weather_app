@@ -1,12 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 import 'package:waether_app_n/models/weather_model.dart';
 import 'package:waether_app_n/widgets/day_forecast_card.dart';
 import 'package:waether_app_n/widgets/main_weather_card.dart';
 import 'package:waether_app_n/widgets/minimum_weather_card.dart';
 
-class WeatherViewBuilder extends StatelessWidget {
+class WeatherViewBuilder extends StatefulWidget {
   const WeatherViewBuilder({
     super.key,
     required this.weatherModel,
@@ -14,10 +14,34 @@ class WeatherViewBuilder extends StatelessWidget {
   final WeatherModel weatherModel;
 
   @override
+  State<WeatherViewBuilder> createState() => _WeatherViewBuilderState();
+}
+
+class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
+  @override
   Widget build(BuildContext context) {
+    List<dynamic> hourList = widget.weatherModel.hourlyForecast;
+    List<String> targetTimes = ["00:00", "06:00", "12:00", "18:00"];
+    List<dynamic> filteredList = [];
+    int i = 0;
+    for (var entry in hourList) {
+      // print(entry["time"]);
+      // print(entry.length);
+      String time = entry['time'].split(' ')[1]; // Extracting the time part
+      // print(time);
+      if (targetTimes.contains(time)) {
+        filteredList.add(entry);
+      }
+      i++;
+      if (i == entry.length - 1) {
+        break;
+      }
+    }
+    String filter = filteredList[0]['time'].split(' ')[1];
+    log(" ${filteredList[0]['time']}");
+    print(filter);
+
     return const Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.transparent,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,6 +108,8 @@ class WeatherViewBuilder extends StatelessWidget {
           )
         ],
       ),
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.transparent,
     );
   }
 }

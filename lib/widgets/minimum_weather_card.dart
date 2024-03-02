@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 
 class MinimumWeatherCard extends StatelessWidget {
   const MinimumWeatherCard({super.key});

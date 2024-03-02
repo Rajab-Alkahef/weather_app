@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 
 class MainWeatherCard extends StatelessWidget {
   const MainWeatherCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var weatherModel = BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+    String avgTemp = "${weatherModel.avgTemp.toInt()}°";
+    List<String> condition = weatherModel.condition.split(" ");
+    String conditionmodified = " ";
+    if (condition.length >= 2) {
+      conditionmodified = "${condition[0]} ${condition[1]}";
+    } else {
+      conditionmodified = condition[0];
+    }
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -25,9 +36,9 @@ class MainWeatherCard extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const Text(
-                  "Alexandria",
-                  style: TextStyle(
+                Text(
+                  weatherModel.cityName,
+                  style: const TextStyle(
                       color: Colors.white, fontSize: 30, letterSpacing: 1),
                 ),
                 const SizedBox(
@@ -36,9 +47,9 @@ class MainWeatherCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      '18°',
-                      style: TextStyle(
+                    Text(
+                      avgTemp,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 60,
                       ),
@@ -48,22 +59,20 @@ class MainWeatherCard extends StatelessWidget {
                     ),
                     Container(height: 40, width: 1.5, color: Colors.white),
                     const SizedBox(
-                      width: 10,
+                      width: 30,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: const Color(0xff35648f),
-                          borderRadius: BorderRadius.circular(16)),
-                      width: 90,
-                      height: 45,
-                      child: const Center(
-                        child: Text(
-                          'Cloudy',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Montserrat'),
-                        ),
+                    Center(
+                      child: Text(
+                        conditionmodified,
+                        style: TextStyle(
+                            background: Paint()
+                              ..strokeWidth = 30.0
+                              ..color = Colors.grey.withOpacity(0.3)
+                              ..style = PaintingStyle.stroke
+                              ..strokeJoin = StrokeJoin.round,
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Montserrat'),
                       ),
                     )
                   ],
@@ -72,14 +81,18 @@ class MainWeatherCard extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
-          top: 125,
+        Positioned(
+          top: 145,
           left: 135,
-          child: Icon(
-            Icons.cloud,
-            color: Colors.white,
-            size: 125,
+          child: Image.network(
+            "https:${weatherModel.image}",
+            scale: 0.55,
           ),
+          // child: Icon(
+          //   Icons.cloud,
+          //   color: Colors.white,
+          //   size: 125,
+          // ),
         ),
       ],
     );
