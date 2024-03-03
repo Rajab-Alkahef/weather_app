@@ -1,47 +1,76 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
+import 'dart:developer';
 
-class MinimumWeatherCard extends StatelessWidget {
-  const MinimumWeatherCard({super.key});
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+
+class MinimumWeatherCard extends StatefulWidget {
+  const MinimumWeatherCard({super.key, required this.cardInfo});
+
+  final Map<String, dynamic> cardInfo;
 
   @override
+  State<MinimumWeatherCard> createState() => _MinimumWeatherCardState();
+}
+
+class _MinimumWeatherCardState extends State<MinimumWeatherCard> {
+  @override
   Widget build(BuildContext context) {
+    final String time = widget.cardInfo['time'].split(' ')[1];
+    String avgTemp = "${widget.cardInfo['temp_c'].toInt()}°C";
+    String image = 'assets/images/113.png';
+    if (widget.cardInfo['condition']['icon'] != null) {
+      image = widget.cardInfo['condition']['icon'];
+      log(image);
+    }
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         color: const Color(0xff194f7f),
         border: gradiantBorder(),
       ),
-      height: 175,
+      height: 190,
       width: 80,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "Now",
-            style: TextStyle(
+          Text(
+            time,
+            style: const TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 20,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 16,
           ),
-          Image.asset(
-            'assets/images/cloudy.png',
-            scale: 1.7,
+          SizedBox(
+            height: 60,
+            width: 90,
+            child: Image.network(
+              "http:${widget.cardInfo['condition']['icon']}",
+              // scale: 1,
+              fit: BoxFit.cover,
+            ),
           ),
+          // CachedNetworkImage(
+          //   imageUrl: 'https:$image',
+          //   progressIndicatorBuilder: (context, url, downloadProgress) =>
+          //       CircularProgressIndicator(
+          //     value: downloadProgress.progress,
+          //     color: Colors.white.withOpacity(0.7),
+          //   ),
+          //   errorWidget: (context, url, error) => const Icon(Icons.error),
+          // ),
           const SizedBox(
             height: 16,
           ),
-          const Text(
-            '18°C',
-            style: TextStyle(
+          Text(
+            avgTemp,
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 24,
             ),
           )
         ],

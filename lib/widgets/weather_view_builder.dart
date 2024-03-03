@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:waether_app_n/models/weather_model.dart';
 import 'package:waether_app_n/widgets/day_forecast_card.dart';
@@ -37,17 +35,17 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
         break;
       }
     }
-    String filter = filteredList[0]['time'].split(' ')[1];
-    log(" ${filteredList[0]['time']}");
-    print(filter);
+    // String filter = filteredList[0]['condition']['icon'];
+    print(" ${filteredList[0]['temp_c']}");
+    // print(filter);
 
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MainWeatherCard(),
-          Padding(
+          const MainWeatherCard(),
+          const Padding(
             padding: EdgeInsets.only(top: 32, bottom: 24, left: 24),
             child: Text(
               'Today',
@@ -59,18 +57,26 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MinimumWeatherCard(),
-                MinimumWeatherCard(),
-                MinimumWeatherCard(),
-                MinimumWeatherCard(),
+                MinimumWeatherCard(
+                  cardInfo: filteredList[0],
+                ),
+                MinimumWeatherCard(
+                  cardInfo: filteredList[1],
+                ),
+                MinimumWeatherCard(
+                  cardInfo: filteredList[2],
+                ),
+                MinimumWeatherCard(
+                  cardInfo: filteredList[3],
+                ),
               ],
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
             child: Row(
               children: [
@@ -90,7 +96,7 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
               ],
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
