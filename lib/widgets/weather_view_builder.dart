@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:waether_app_n/models/weather_model.dart';
 import 'package:waether_app_n/widgets/day_forecast_card.dart';
 import 'package:waether_app_n/widgets/main_weather_card.dart';
@@ -18,25 +21,11 @@ class WeatherViewBuilder extends StatefulWidget {
 class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
   @override
   Widget build(BuildContext context) {
-    List<dynamic> hourList = widget.weatherModel.hourlyForecast;
-    List<String> targetTimes = ["00:00", "06:00", "12:00", "18:00"];
-    List<dynamic> filteredList = [];
-    int i = 0;
-    for (var entry in hourList) {
-      // print(entry["time"]);
-      // print(entry.length);
-      String time = entry['time'].split(' ')[1]; // Extracting the time part
-      // print(time);
-      if (targetTimes.contains(time)) {
-        filteredList.add(entry);
-      }
-      i++;
-      if (i == entry.length - 1) {
-        break;
-      }
-    }
+    List<dynamic> filteredList = timeFilterList();
+    // print(dateToDayName(widget.weatherModel.date));
+    // log('${widget.weatherModel.dayForecast}');
     // String filter = filteredList[0]['condition']['icon'];
-    print(" ${filteredList[0]['temp_c']}");
+    // print(" ${filteredList[0]['temp_c']}");
     // print(filter);
 
     return Scaffold(
@@ -96,19 +85,21 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
-                DayForecastCard(),
-                SizedBox(
+                DayForecastCard(
+                  dayInfo: widget.weatherModel.dayForecast[0],
+                ),
+                const SizedBox(
                   height: 12,
                 ),
-                DayForecastCard(),
-                SizedBox(
+                DayForecastCard(dayInfo: widget.weatherModel.dayForecast[1]),
+                const SizedBox(
                   height: 12,
                 ),
-                DayForecastCard(),
+                DayForecastCard(dayInfo: widget.weatherModel.dayForecast[2]),
               ],
             ),
           )
@@ -118,4 +109,29 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
       backgroundColor: Colors.transparent,
     );
   }
+
+  List<dynamic> timeFilterList() {
+    List<dynamic> hourList = widget.weatherModel.hourlyForecast;
+    List<String> targetTimes = ["00:00", "06:00", "12:00", "18:00"];
+    List<dynamic> filteredList = [];
+    int i = 0;
+    for (var entry in hourList) {
+      // print(entry["time"]);
+      // print(entry.length);
+      String time = entry['time'].split(' ')[1]; // Extracting the time part
+      // print(time);
+      if (targetTimes.contains(time)) {
+        filteredList.add(entry);
+      }
+      i++;
+      if (i == entry.length - 1) {
+        break;
+      }
+    }
+    return filteredList;
+  }
+}
+
+String dateToDayName(String value) {
+  return DateFormat.EEEE().format(DateTime.parse(value));
 }

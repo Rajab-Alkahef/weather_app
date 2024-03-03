@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:intl/intl.dart';
 
 class MinimumWeatherCard extends StatefulWidget {
   const MinimumWeatherCard({super.key, required this.cardInfo});
@@ -18,11 +19,8 @@ class _MinimumWeatherCardState extends State<MinimumWeatherCard> {
   Widget build(BuildContext context) {
     final String time = widget.cardInfo['time'].split(' ')[1];
     String avgTemp = "${widget.cardInfo['temp_c'].toInt()}°C";
-    String image = 'assets/images/113.png';
-    if (widget.cardInfo['condition']['icon'] != null) {
-      image = widget.cardInfo['condition']['icon'];
-      log(image);
-    }
+    String image = ImageHandling();
+    // print(DateFormat.EEEE().format(DateTime.now()));
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
@@ -49,7 +47,7 @@ class _MinimumWeatherCardState extends State<MinimumWeatherCard> {
             height: 60,
             width: 90,
             child: Image.network(
-              "http:${widget.cardInfo['condition']['icon']}",
+              image,
               // scale: 1,
               fit: BoxFit.cover,
             ),
@@ -76,6 +74,15 @@ class _MinimumWeatherCardState extends State<MinimumWeatherCard> {
         ],
       ),
     );
+  }
+
+  String ImageHandling() {
+    String image = 'assets/images/113.png';
+    if (widget.cardInfo['condition']['icon'] != null) {
+      image = 'http:${widget.cardInfo['condition']['icon']}';
+      // log(image);
+    }
+    return image;
   }
 
   GradientBoxBorder gradiantBorder() {

@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:waether_app_n/widgets/weather_view_builder.dart';
 
 class DayForecastCard extends StatelessWidget {
   const DayForecastCard({
     super.key,
+    required this.dayInfo,
   });
+  final Map<String, dynamic> dayInfo;
 
   @override
   Widget build(BuildContext context) {
+    String day = dateToDayName(dayInfo['date']);
+    String image = ImageHandling();
+    print(dateToDayName(dayInfo['date']));
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          'Today',
-          style: TextStyle(color: Color(0xff768a9a), fontSize: 16),
+        Text(
+          day,
+          style: const TextStyle(color: Color(0xff768a9a), fontSize: 16),
         ),
-        Image.asset(
-          'assets/images/clear.png',
-          scale: 2.5,
+        Image.network(
+          image,
+          scale: 1.7,
         ),
         Row(
           children: [
-            const Text(
-              '18°',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            Text(
+              '${dayInfo['day']['mintemp_c'].toInt()}°',
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -38,7 +44,7 @@ class DayForecastCard extends StatelessWidget {
                   ),
                   Container(
                     height: 5,
-                    width: 75,
+                    width: 50,
                     decoration: BoxDecoration(
                         color: const Color(0xffffcc03),
                         borderRadius: BorderRadius.circular(16)),
@@ -46,13 +52,22 @@ class DayForecastCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Text(
-              '18°',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            Text(
+              '${dayInfo['day']['maxtemp_c'].toInt()}°',
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             )
           ],
         )
       ],
     );
+  }
+
+  String ImageHandling() {
+    String image = 'assets/images/113.png';
+    if (dayInfo['day']['condition']['icon'] != null) {
+      image = 'http:${dayInfo['day']['condition']['icon']}';
+      print(image);
+    }
+    return image;
   }
 }
