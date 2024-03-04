@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waether_app_n/widgets/weather_view_builder.dart';
+import 'package:waether_app_n/constatnt.dart';
 
 class DayForecastCard extends StatelessWidget {
   const DayForecastCard({
@@ -16,9 +16,12 @@ class DayForecastCard extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          day,
-          style: const TextStyle(color: Color(0xff768a9a), fontSize: 16),
+        SizedBox(
+          width: 45,
+          child: Text(
+            day,
+            style: const TextStyle(color: Color(0xff768a9a), fontSize: 16),
+          ),
         ),
         Image.network(
           image,
@@ -27,7 +30,7 @@ class DayForecastCard extends StatelessWidget {
         Row(
           children: [
             Text(
-              '${dayInfo['day']['mintemp_c'].toInt()}°',
+              '${dayInfo['day']['mintemp_c'].toInt()}°C',
               style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
             Padding(
@@ -53,7 +56,7 @@ class DayForecastCard extends StatelessWidget {
               ),
             ),
             Text(
-              '${dayInfo['day']['maxtemp_c'].toInt()}°',
+              '${dayInfo['day']['maxtemp_c'].toInt()}°C',
               style: const TextStyle(color: Colors.white, fontSize: 18),
             )
           ],

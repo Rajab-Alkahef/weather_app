@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:waether_app_n/models/weather_model.dart';
 import 'package:waether_app_n/widgets/day_forecast_card.dart';
 import 'package:waether_app_n/widgets/main_weather_card.dart';
@@ -102,7 +99,10 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
                 DayForecastCard(dayInfo: widget.weatherModel.dayForecast[2]),
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 40,
+          ),
         ],
       ),
       resizeToAvoidBottomInset: false,
@@ -130,8 +130,4 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
     }
     return filteredList;
   }
-}
-
-String dateToDayName(String value) {
-  return DateFormat.EEEE().format(DateTime.parse(value));
 }

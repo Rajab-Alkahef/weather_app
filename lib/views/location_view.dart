@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 import 'package:waether_app_n/widgets/custom_search_bar.dart';
 import 'package:waether_app_n/widgets/location_card.dart';
+import 'package:waether_app_n/widgets/location_card_gps.dart';
 
 class LocationView extends StatefulWidget {
   const LocationView({super.key});
@@ -16,8 +18,7 @@ class LocationView extends StatefulWidget {
 class _LocationViewState extends State<LocationView> {
   @override
   Widget build(BuildContext context) {
-    // setState(() {});
-
+    // print(getAddress());
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -48,17 +49,17 @@ class _LocationViewState extends State<LocationView> {
               const SizedBox(
                 height: 10,
               ),
+              const LocationGPScard(),
+              const SizedBox(height: 10),
               BlocBuilder<GetWeatherCubit, WeatherState>(
                 builder: (context, state) {
                   if (state is WeatherInitialState) {
-                    return const Center(
-                        child: Text(
-                      "Search for a City",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontFamily: "Montserrat"),
-                    ));
+                    return const LocationCard(
+                      location: "Search for city..",
+                      cityName: "",
+                      condition: "",
+                      avgtemp: "",
+                    );
                   } else if (state is WeatherLoadedState) {
                     var weatherModel =
                         BlocProvider.of<GetWeatherCubit>(context).weatherModel;
@@ -82,7 +83,7 @@ class _LocationViewState extends State<LocationView> {
                     );
                   }
                 },
-              ),
+              )
               // SizedBox(
               //   height: 10,
               // ),
@@ -101,3 +102,59 @@ class _LocationViewState extends State<LocationView> {
     );
   }
 }
+
+// class LocationGPScard extends StatelessWidget {
+//   const LocationGPScard({
+//     super.key,
+//   });
+// Future<String> getAddress() async {
+//       LocationService location = LocationService();
+//       await location.requestPermission();
+//       // String locationData = await location.getCurrentLocation();
+//       // Assuming you have some method in LocationService to get address from locationData
+//       String address = await location.getCurrentLocation();
+//       return address;
+//     }
+//   @override
+//   Widget build(BuildContext context) {
+//     return FutureBuilder(
+//       future: getAddress(),
+//       builder: BlocBuilder<GetWeatherLocationCubit, WeatherLocationState>(
+//         builder: (context, state) {
+//           if (state is WeatherLocationInitialState) {
+//             return const LocationCard(
+//               location: "loading...",
+//               cityName: "Loading...",
+//               condition: "Loading...",
+//               avgtemp: "",
+//             );
+//           } else if (state is WeatherLocationLoadedState) {
+//             var weatherModel =
+//                 BlocProvider.of<GetWeatherLocationCubit>(context)
+//                     .weatherModel;
+//             String avgTemp = "${weatherModel.avgTemp.toInt()}°";
+
+//             return LocationCard(
+//               location: weatherModel.country,
+//               cityName: weatherModel.cityName,
+//               condition: weatherModel.condition,
+//               avgtemp: avgTemp,
+//             );
+//           } else {
+//             return const Center(
+//               child: Text(
+//                 "Oops there was an error",
+//                 style: TextStyle(
+//                     color: Colors.white,
+//                     fontSize: 24,
+//                     fontFamily: "Montserrat"),
+//               ),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
+
+

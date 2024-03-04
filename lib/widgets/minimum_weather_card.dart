@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 // import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:intl/intl.dart';
 
 class MinimumWeatherCard extends StatefulWidget {
   const MinimumWeatherCard({super.key, required this.cardInfo});
