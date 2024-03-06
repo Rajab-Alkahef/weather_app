@@ -11,19 +11,19 @@ class LocationGPScard extends StatelessWidget {
     super.key,
   });
 
-  Future<String> getAddress() async {
-    LocationService location = LocationService();
-    await location.requestPermission();
-    // String locationData = await location.getCurrentLocation();
-    // Assuming you have some method in LocationService to get address from locationData
-    String address = await location.getCurrentLocation();
-    return address;
-  }
+  // Future<String> getAddress() async {
+  //   LocationService location = LocationService();
+  //   await location.requestPermission();
+  //   // String locationData = await location.getCurrentLocation();
+  //   // Assuming you have some method in LocationService to get address from locationData
+  //   String address = await location.getCurrentLocation();
+  //   return address;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-      future: getAddress(),
+      future: determinePosition(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Show loading indicator while fetching address

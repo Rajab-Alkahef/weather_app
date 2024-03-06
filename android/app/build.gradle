@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.waether_app_n"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -58,6 +58,12 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    // allprojects{
+    //     tasks.withType(JavaCompile){
+    //         options.compilerArgs  << "-Xlint:deprecation"
+    //     }
+    // }
+    
 }
 
 flutter {
@@ -65,3 +71,4 @@ flutter {
 }
 
 dependencies {}
+
