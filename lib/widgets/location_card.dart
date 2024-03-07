@@ -49,38 +49,43 @@ class LocationCard extends StatelessWidget {
               padding: const EdgeInsets.all(18.0),
               child: Row(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        location,
-                        style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: 24,
+                  SizedBox(
+                    width: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
+                          location,
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          cityName,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            cityName,
+                            style: const TextStyle(
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          condition,
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 18,
                           ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        condition,
-                        style: const TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                   const Spacer(),
                   Text(

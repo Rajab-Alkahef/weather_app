@@ -65,14 +65,31 @@ class LocationGPScard extends StatelessWidget {
                   avgtemp: avgTemp,
                 );
               } else {
-                return const Center(
-                  child: Text(
-                    "Oops there was an error",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontFamily: "Montserrat"),
-                  ),
+                return const Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    LocationCard(
+                      location: "",
+                      cityName: "",
+                      condition: "",
+                      avgtemp: "",
+                    ),
+                    Center(
+                      child: Text(
+                        'oops there was an error please try again',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          shadows: [
+                            Shadow(
+                                color: Colors.black,
+                                offset: Offset(1.5, 1.5),
+                                blurRadius: 5)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               }
             },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
+import 'package:waether_app_n/widgets/custom_search.dart';
 import 'package:waether_app_n/widgets/custom_search_bar.dart';
 import 'package:waether_app_n/widgets/location_card.dart';
 import 'package:waether_app_n/widgets/location_card_gps.dart';
@@ -45,7 +46,7 @@ class _LocationViewState extends State<LocationView> {
               const SizedBox(
                 height: 40,
               ),
-              const CustomSearchbar(),
+              const CustomSearch(),
               const SizedBox(
                 height: 10,
               ),
@@ -72,14 +73,29 @@ class _LocationViewState extends State<LocationView> {
                       avgtemp: avgTemp,
                     );
                   } else {
-                    return const Center(
-                      child: Text(
-                        "Oops there was an error",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontFamily: "Montserrat"),
-                      ),
+                    return const Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        LocationCard(
+                          location: "",
+                          cityName: "",
+                          condition: "",
+                          avgtemp: "",
+                        ),
+                        Center(
+                          child: Text(
+                            'oops there was an error, please search again',
+                            // maxLines: 2,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 21, shadows: [
+                              Shadow(
+                                  color: Colors.black,
+                                  offset: Offset(1.5, 1.5),
+                                  blurRadius: 5)
+                            ]),
+                          ),
+                        ),
+                      ],
                     );
                   }
                 },

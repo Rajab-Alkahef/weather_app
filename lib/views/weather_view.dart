@@ -35,7 +35,8 @@ class WeatherView extends StatelessWidget {
           } else {
             return const Center(
               child: Text(
-                "Oops there was an Error, please try again",
+                "Oops there was an Error, please search again",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

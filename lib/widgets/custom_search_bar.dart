@@ -20,6 +20,9 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: TextField(
+        autofillHints: const [
+          AutofillHints.addressCity,
+        ],
         // scrollPhysics: const BouncingScrollPhysics(),
         showCursor: true,
         style: const TextStyle(
