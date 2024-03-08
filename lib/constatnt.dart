@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:intl/intl.dart';
 // import 'package:location/location.dart';
 
@@ -78,7 +80,7 @@ Future<String> determinePosition() async {
   // continue accessing the position of the device.
   Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
-  print(position);
+  // print(position);
   try {
     Address address = await geoCode.reverseGeocoding(
         latitude: position.latitude, longitude: position.longitude);
@@ -93,6 +95,19 @@ Future<String> determinePosition() async {
 
 String dateToDayName(String value) {
   return DateFormat.E().format(DateTime.parse(value));
+}
+
+GradientBoxBorder gradiantBorders() {
+  return const GradientBoxBorder(
+      gradient: LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.topRight,
+        colors: [
+          Color.fromARGB(255, 38, 114, 190),
+          Color.fromARGB(255, 45, 148, 239),
+        ],
+      ),
+      width: 1.5);
 }
 
 List<String> cities = [

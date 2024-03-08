@@ -26,7 +26,7 @@ class LocationGPScard extends StatelessWidget {
       future: determinePosition(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // Show loading indicator while fetching address
+          // Show loading while fetching address
           return const LocationCard(
             location: "loading...",
             cityName: "Loading...",

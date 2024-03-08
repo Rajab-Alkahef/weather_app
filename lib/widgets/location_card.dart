@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+
+import 'package:waether_app_n/constatnt.dart';
 
 class LocationCard extends StatelessWidget {
   const LocationCard(
@@ -21,15 +22,7 @@ class LocationCard extends StatelessWidget {
         height: 170,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: gradiantBorder(),
-          // image: const DecorationImage(
-          //   opacity: 0.6,
-          //   image: AssetImage(
-          //     'assets/images/sky.jpg',
-          //   ),
-          //   fit: BoxFit.fill,
-          //   scale: 1.0,
-          // ),
+          border: gradiantBorders(),
           borderRadius: BorderRadius.circular(9),
         ),
         child: Stack(
@@ -103,18 +96,5 @@ class LocationCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  GradientBoxBorder gradiantBorder() {
-    return const GradientBoxBorder(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.topRight,
-          colors: [
-            Color.fromARGB(255, 38, 114, 190),
-            Color.fromARGB(255, 45, 148, 239),
-          ],
-        ),
-        width: 1.5);
   }
 }

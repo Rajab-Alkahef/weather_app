@@ -22,10 +22,11 @@ class _LocationViewState extends State<LocationView> {
     // print(getAddress());
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [Color(0xff0d2843), Color(0xff144875)])),
+        gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [Color(0xff0d2843), Color(0xff144875)]),
+      ),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
