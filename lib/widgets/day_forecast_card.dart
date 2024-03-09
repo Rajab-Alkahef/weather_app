@@ -14,7 +14,7 @@ class DayForecastCard extends StatelessWidget {
     String image = ImageHandling();
     print(dateToDayName(dayInfo['date']));
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
           width: 45,
@@ -23,9 +23,15 @@ class DayForecastCard extends StatelessWidget {
             style: const TextStyle(color: Color(0xff768a9a), fontSize: 16),
           ),
         ),
+        const SizedBox(
+          width: 40,
+        ),
         Image.network(
           image,
           scale: 1.7,
+        ),
+        const SizedBox(
+          width: 25,
         ),
         Row(
           children: [

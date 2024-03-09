@@ -30,7 +30,9 @@ class _WeatherViewBuilderState extends State<WeatherViewBuilder> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const MainWeatherCard(),
+          MainWeatherCard(
+            weatherModel: widget.weatherModel,
+          ),
           const Padding(
             padding: EdgeInsets.only(top: 32, bottom: 24, left: 24),
             child: Text(

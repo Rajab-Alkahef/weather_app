@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
+import 'package:waether_app_n/models/weather_model.dart';
 
 class MainWeatherCard extends StatelessWidget {
-  const MainWeatherCard({super.key});
-
+  const MainWeatherCard({super.key, required this.weatherModel});
+  final WeatherModel weatherModel;
   @override
   Widget build(BuildContext context) {
-    var weatherModel = BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+    // var weatherModel = BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+
     String avgTemp = "${weatherModel.avgTemp.toInt()}°";
     List<String> condition = weatherModel.condition.split(" ");
     String conditionmodified = " ";
