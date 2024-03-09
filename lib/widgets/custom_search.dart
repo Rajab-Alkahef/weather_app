@@ -16,7 +16,7 @@ class CustomSearch extends StatefulWidget {
 
 class _CustomSearchState extends State<CustomSearch> {
   final GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
-  final TextEditingController _textFieldController = TextEditingController();
+  // final TextEditingController _textFieldController = TextEditingController();
   String searchValue = '';
   Color color = Colors.white.withOpacity(0.3);
 

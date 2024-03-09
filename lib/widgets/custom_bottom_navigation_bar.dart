@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waether_app_n/cubit/get_weather_cubit_location/get_weather_cubit_location.dart';
 import 'package:waether_app_n/views/location_view.dart';
 import 'package:waether_app_n/views/setting_view.dart';
 import 'package:waether_app_n/views/weather_view.dart';
@@ -28,6 +30,13 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
     const LocationView(),
     const SettingView(),
   ];
+  @override
+  void initState() {
+    var getWeatherCubit = BlocProvider.of<GetWeatherLocationCubit>(context);
+    getWeatherCubit.getWeatherLocation();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
