@@ -16,11 +16,11 @@ class CustomButtomNavigationBar extends StatefulWidget {
 }
 
 class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
-  int _selectedIndex = 1;
+  // int _selectedIndex = 1;
   void _onItemTapped(int index) {
     setState(
       () {
-        _selectedIndex = index;
+        selectedIndex = index;
       },
     );
   }
@@ -41,7 +41,7 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        tabs.elementAt(_selectedIndex),
+        tabs.elementAt(selectedIndex),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Align(
@@ -52,7 +52,7 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
                 unselectedItemColor: Colors.white.withOpacity(0.5),
                 backgroundColor: Colors.white.withOpacity(0.05),
                 elevation: 0,
-                currentIndex: _selectedIndex,
+                currentIndex: selectedIndex,
                 selectedItemColor: const Color(0xff2e93ee),
                 onTap: _onItemTapped,
                 items: const [
@@ -77,3 +77,5 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
     );
   }
 }
+
+int selectedIndex = 1;

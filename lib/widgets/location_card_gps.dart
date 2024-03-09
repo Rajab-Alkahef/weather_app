@@ -46,6 +46,7 @@ class LocationGPScard extends StatelessWidget {
             cityName: weatherModel.cityName,
             condition: weatherModel.condition,
             avgtemp: avgTemp,
+            refresh: 'Tap to refresh',
           );
         } else {
           return const Stack(
@@ -56,6 +57,7 @@ class LocationGPScard extends StatelessWidget {
                 cityName: "",
                 condition: "",
                 avgtemp: "",
+                refresh: '',
               ),
               Center(
                 child: Text(

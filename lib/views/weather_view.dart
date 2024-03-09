@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 import 'package:waether_app_n/cubit/get_weather_cubit_location/get_weather_cubit_location.dart';
 import 'package:waether_app_n/widgets/weather_view_builder.dart';
 

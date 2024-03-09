@@ -9,7 +9,9 @@ class LocationCard extends StatelessWidget {
       required this.cityName,
       required this.location,
       required this.condition,
-      required this.avgtemp});
+      required this.avgtemp,
+      this.refresh = ''});
+  final String refresh;
   final String cityName;
   final String location;
   final String condition;
@@ -74,9 +76,17 @@ class LocationCard extends StatelessWidget {
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 24,
                           ),
-                        )
+                        ),
+                        Text(
+                          refresh,
+                          style: const TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                        ),
                       ],
                     ),
                   ),
