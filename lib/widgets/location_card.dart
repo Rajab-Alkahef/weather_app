@@ -10,7 +10,9 @@ class LocationCard extends StatelessWidget {
       required this.location,
       required this.condition,
       required this.avgtemp,
-      this.refresh = ''});
+      this.refresh = '',
+      this.backgroundImage = 'assets/images/sky.jpg'});
+  final String backgroundImage;
   final String refresh;
   final String cityName;
   final String location;
@@ -30,7 +32,7 @@ class LocationCard extends StatelessWidget {
         child: Stack(
           children: [
             Image.asset(
-              'assets/images/sky.jpg',
+              backgroundImage,
               fit: BoxFit.fill,
               width: double.infinity,
             ).blurred(
@@ -76,7 +78,7 @@ class LocationCard extends StatelessWidget {
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 18,
                           ),
                         ),
                         Text(

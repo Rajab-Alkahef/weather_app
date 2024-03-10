@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:waether_app_n/constatnt.dart';
 import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 import 'package:waether_app_n/widgets/location_card.dart';
-import 'package:waether_app_n/widgets/weather_view_builder.dart';
+import 'package:waether_app_n/widgets/weather_view_widgets/weather_view_builder.dart';
 
 class searchLocationCardBuilder extends StatefulWidget {
   const searchLocationCardBuilder({
@@ -57,6 +58,7 @@ class _searchLocationCardBuilderState extends State<searchLocationCardBuilder>
               cityName: "",
               condition: "",
               avgtemp: "",
+              backgroundImage: 'assets/images/sky_1.jpg',
             ),
           );
         } else if (state is WeatherLoadedState) {
@@ -72,12 +74,7 @@ class _searchLocationCardBuilderState extends State<searchLocationCardBuilder>
                 MaterialPageRoute(
                   builder: (context) {
                     return Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            colors: [Color(0xff0d2843), Color(0xff144875)]),
-                      ),
+                      decoration: gradientBackground(),
                       child: WeatherViewBuilder(
                         weatherModel: weatherModel,
                       ),
@@ -91,6 +88,8 @@ class _searchLocationCardBuilderState extends State<searchLocationCardBuilder>
               cityName: weatherModel.cityName,
               condition: weatherModel.condition,
               avgtemp: avgTemp,
+              backgroundImage: 'assets/images/sky_1.jpg',
+              refresh: 'Tap to see more details',
             ),
           );
         } else {
@@ -102,6 +101,7 @@ class _searchLocationCardBuilderState extends State<searchLocationCardBuilder>
                 cityName: "",
                 condition: "",
                 avgtemp: "",
+                backgroundImage: 'assets/images/sky_1.jpg',
               ),
               Center(
                 child: Text(

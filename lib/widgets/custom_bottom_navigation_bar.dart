@@ -9,18 +9,18 @@ class CustomButtomNavigationBar extends StatefulWidget {
   const CustomButtomNavigationBar({
     super.key,
   });
-
+  // final int _selectedIndex = 1;
   @override
   State<CustomButtomNavigationBar> createState() =>
       _CustomButtomNavigationBarState();
 }
 
 class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
-  // int _selectedIndex = 1;
+  int _selectedIndex = 1;
   void _onItemTapped(int index) {
     setState(
       () {
-        selectedIndex = index;
+        _selectedIndex = index;
       },
     );
   }
@@ -41,7 +41,7 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        tabs.elementAt(selectedIndex),
+        tabs.elementAt(_selectedIndex),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Align(
@@ -52,7 +52,7 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
                 unselectedItemColor: Colors.white.withOpacity(0.5),
                 backgroundColor: Colors.white.withOpacity(0.05),
                 elevation: 0,
-                currentIndex: selectedIndex,
+                currentIndex: _selectedIndex,
                 selectedItemColor: const Color(0xff2e93ee),
                 onTap: _onItemTapped,
                 items: const [
@@ -77,5 +77,3 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
     );
   }
 }
-
-int selectedIndex = 1;

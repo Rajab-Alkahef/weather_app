@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:waether_app_n/constatnt.dart';
-import 'package:waether_app_n/widgets/custom_search_bar.dart';
+import 'package:waether_app_n/widgets/location_view_widgets/custom_search_bar.dart';
 
 import 'package:waether_app_n/cubit/get_weather_cubit/get_weather_cubit.dart';
 

@@ -45,7 +45,7 @@ class _MinimumWeatherCardState extends State<MinimumWeatherCard> {
             width: 90,
             child: Image.network(
               image,
-              // scale: 1,
+              scale: 1,
               fit: BoxFit.cover,
             ),
           ),

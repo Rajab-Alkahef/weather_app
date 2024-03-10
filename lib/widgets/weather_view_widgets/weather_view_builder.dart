@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:waether_app_n/models/weather_model.dart';
-import 'package:waether_app_n/widgets/day_forecast_card.dart';
-import 'package:waether_app_n/widgets/main_weather_card.dart';
-import 'package:waether_app_n/widgets/minimum_weather_card.dart';
+import 'package:waether_app_n/widgets/weather_view_widgets/day_forecast_card.dart';
+import 'package:waether_app_n/widgets/weather_view_widgets/main_weather_card.dart';
+import 'package:waether_app_n/widgets/weather_view_widgets/minimum_weather_card.dart';
 
 class WeatherViewBuilder extends StatefulWidget {
   const WeatherViewBuilder({
