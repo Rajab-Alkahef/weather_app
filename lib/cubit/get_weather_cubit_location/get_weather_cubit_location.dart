@@ -18,31 +18,28 @@ class GetWeatherLocationCubit extends Cubit<WeatherLocationState> {
     try {
       // Position positions = await Geolocator.getCurrentPosition(
       //     desiredAccuracy: LocationAccuracy.high);
-      // Position positions = await determinePosition();
+      Position positions = await determinePosition();
       // Future<Address> address = geoCode
       //     .reverseGeocoding(
       //         latitude: positions.latitude, longitude: positions.longitude);
       //     String addr =address.city;
-      String address = await determinePosition();
-      log('message----------------$address----------------------------------');
-      weatherModel =
-          await WeatherService(Dio()).getCurrentWeather(cityName: address);
+      // String address = await determinePosition();
+      // log('message----------------$address----------------------------------');
+      weatherModel = await WeatherService(Dio())
+          .getCurrentWeatherLocationLatLong(
+              latitude: positions.latitude, longitude: positions.longitude);
       emit(WeatherLocationLoadedState());
     } catch (e) {
       emit(WeatherLocationFailureState());
     }
   }
 
-  Future<String> determinePosition() async {
+  Future<Position> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
-    // GeoCode geoCode = GeoCode();
-    // Test if location services are enabled.
+
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
       return Future.error('Location services are disabled.');
     }
 
@@ -71,13 +68,15 @@ class GetWeatherLocationCubit extends Cubit<WeatherLocationState> {
         desiredAccuracy: LocationAccuracy.high);
     // print(position);
     try {
-      Address address = await geoCode.reverseGeocoding(
-          latitude: position.latitude, longitude: position.longitude);
-      print(address.city);
-      return address.city!;
+      return position;
+      // Address address = await geoCode.reverseGeocoding(
+      //     latitude: position.latitude, longitude: position.longitude);
+      // print(address.city);
+      // return address.city!;
     } catch (e) {
       print(e);
-      return "Error";
+      // return "Error";
+      throw Exception();
     }
     // return await Geolocator.getCurrentPosition();
   }

@@ -26,4 +26,24 @@ class WeatherService {
       throw Exception('oops there was an error, try later');
     }
   }
+
+  Future<WeatherModel> getCurrentWeatherLocationLatLong(
+      // ignore: non_constant_identifier_names
+      {required double latitude,
+      required double longitude}) async {
+    try {
+      Response response = await dio.get(
+          '$baseurl/forecast.json?key=$apikey&q=$latitude,$longitude&days=3');
+
+      WeatherModel weathermodel = WeatherModel.fromJson(response.data);
+      return weathermodel;
+    } on DioException catch (e) {
+      final String errMessage = e.response?.data['error']['message'] ??
+          'oops there was an error, try later';
+      throw Exception(errMessage);
+    } catch (e) {
+      log(e.toString());
+      throw Exception('oops there was an error, try later');
+    }
+  }
 }

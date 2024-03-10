@@ -9,6 +9,13 @@ class SettingView extends StatelessWidget {
     return Container(
       decoration: gradientBackground(),
       child: const Scaffold(
+        body: Center(
+          child: Text(
+            "we will add some setting later..",
+            style: TextStyle(
+                color: Colors.white, fontSize: 18, fontFamily: "Montserrat"),
+          ),
+        ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         // bottomNavigationBar: CustomButtomNavigationBar(),
